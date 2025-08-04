@@ -5,7 +5,7 @@ from .models import Habit, HabitRecord
 from .serializers import HabitSerializer, HabitRecordSerializer
 
 
-class HabitListCreateView(generics.ListCreateView):
+class HabitListCreateView(generics.ListCreateAPIView):
     serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated]
 
