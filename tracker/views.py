@@ -38,3 +38,11 @@ class HabitRecordListCreateView(generics.ListCreateAPIView):
         habit_id = self.kwargs["habit_id"]
         habit = Habit.objects.get(id=habit_id, owner=self.request.user)
         serializer.save(habit=habit)
+
+
+class HabitRecordDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = HabitRecordSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return HabitRecord.objects.filter(habit__owner=self.request.user)
