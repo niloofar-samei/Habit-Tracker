@@ -3,7 +3,12 @@ from rest_framework import generics, permissions
 
 from rest_framework.permissions import IsAuthenticated
 from .models import Habit, HabitRecord
-from .serializers import HabitSerializer, HabitRecordSerializer
+from .serializers import (
+    HabitSerializer,
+    HabitRecordSerializer,
+    UserRegistrationSerializer,
+)
+from django.contrib.auth.models import User
 
 
 class HabitListCreateView(generics.ListCreateAPIView):
@@ -47,3 +52,8 @@ class HabitRecordDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return HabitRecord.objects.filter(habit__owner=self.request.user)
+
+
+class UserRegistrationView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserRegistrationSerializer

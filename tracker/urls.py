@@ -4,6 +4,7 @@ from .views import (
     HabitDetailVewi,
     HabitRecordListCreateView,
     HabitRecordDetailView,
+    UserRegistrationView,
 )
 
 urlpatterns = [
@@ -17,4 +18,5 @@ urlpatterns = [
     path(
         "records/<int:pk>", HabitRecordDetailView.as_view(), name="habit-record-detail"
     ),
+    path("register/", UserRegistrationView.as_view(), name="user-register"),
 ]
